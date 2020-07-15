@@ -1,0 +1,63 @@
+<table class="table table-hover ">
+  <thead>
+    <tr>
+      <th style="width: 10%" class="text-center">#</th>
+      <th>Name</th>
+      <th style="width: 15%" class="text-center">Status</th>
+      <th style="width: 15%" class="text-center">Scheduled On</th>
+      <th style="width: 15%" class="text-center">Level</th>
+      <th style="width: 15%">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of data">
+      <tr *ngIf="!idEdit || idEdit !== item.id">
+        <td class="text-center">{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+	<td class="text-center capitalize">{{item.status}}</td>
+	<td class="text-center capitalize">{{item.created_on_fmt}}</td>
+        <td class="text-center">
+          <span *ngIf="item.level === 0" class="label label-default">Small</span>
+          <span *ngIf="item.level === 1" class="label label-info">Medium</span>
+          <span *ngIf="item.level === 2" class="label label-danger">High</span>
+      </td>
+        <td>
+          <button (click)="clickEdit(item)" type="button" class="btn btn-warning btn-sm">Edi1t</button>
+          <button (click)="deleteTask.emit(item.id)"  type="button" class="btn btn-danger btn-sm ml-2">Delete</button>
+        </td>
+      </tr>
+      
+      <tr *ngIf="idEdit && idEdit == item.id">
+          <!-- <app-edit
+            [data]="dataEdit || {}"
+          ></app-edit> -->
+          <td class="text-center">{{ item.id }}</td>
+          <td>
+            <input name="name" [(ngModel)]="dataEdit.name" type="text" class="form-control">
+          </td>
+	  
+	  <td class="text-center">
+            <select [(ngModel)]="dataEdit.status" class="form-control">
+              <option value='pending'>Pending</option>
+              <option value='completed'>Completed</option>
+            </select>
+          </td>
+	  <td>
+            <input name="name" [(ngModel)]="dataEdit.created_on" type="datetime-local" class="form-control">
+          </td>
+          <td class="text-center">
+            <select [(ngModel)]="dataEdit.level" class="form-control">
+              <option value=0>Small</option>
+              <option value=1>Medium</option>
+              <option value=2>High</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="idEdit = null" type="button" class="btn btn-default btn-sm">Cancel</button>
+            <button [disabled]="dataEdit.name.length === 0" (click)="editSubmit()" type="button" class="btn btn-success btn-sm ml-2">Save</button>
+          </td>
+      </tr>
+
+    </ng-container>
+  </tbody>
+</table>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="input-group">
+      <input #inputName (input)="changeSearch('filter', inputName.value)" type="text" class="form-control" placeholder="Search item name" />
+      <span class="input-group-btn">
+      <button  class="btn btn-info" type="button">Clear</button>
+      </span>
+    </div>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Sort by <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a (click)="changeSearch('sort', 'name-asc')" role="button">Name ASC</a></li>
+        <li><a (click)="changeSearch('sort', 'name-desc')" role="button">Name DESC</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a (click)="changeSearch('sort', 'level-asc')" role="button">Level ASC</a></li>
+        <li><a (click)="changeSearch('sort', 'level-desc')" role="button">Level DESC</a></li>
+      </ul>
+      <span class="label label-success label-medium ml-2" >{{ control.sort | uppercase }}</span>
+    </div>
+  </div>
+  <app-create (createClick)="createClick.emit($event)"></app-create>
+</div>

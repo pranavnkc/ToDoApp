@@ -1,0 +1,17 @@
+<tr >
+<td class="text-center">{{ data.id || '' }}</td>
+<td>
+  <input name="name" [(ngModel)]="data.name" type="text" class="form-control">
+</td>
+<td class="text-center">
+  <select [(ngModel)]="data.level" class="form-control">
+    <option value="0">Small</option>
+    <option value="1">Medium</option>
+    <option value="2">High</option>
+  </select>
+</td>
+<td>
+  <button type="button" class="btn btn-default btn-sm">Cancel</button>
+  <button [disabled]="data.name.length === 0" (click)="editSubmit()" type="button" class="btn btn-success btn-sm">Save</button>
+</td>
+</tr>

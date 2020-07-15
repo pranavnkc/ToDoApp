@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="page-header">
+    <h1>ToDo List <small>Angular 9</small></h1>
+  </div>
+  
+  <app-control
+    (createClick)="createNewTask($event)"
+    (handleFilter)="handleFilter($event)"
+    [control]="control"
+    ></app-control>
+
+  <div class="panel panel-success">
+    <div class="panel-heading">List Item</div>
+    <app-tatble 
+      [data]="filterData()"
+      (deleteTask)="deleteTask($event)"
+      (editTask)="editTask($event)"
+      ></app-tatble>
+  </div>
+</div>
